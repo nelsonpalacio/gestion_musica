@@ -38,14 +38,23 @@ class ListaReproduccionForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.Textarea(attrs={'rows': 3}),
         }
-
+from django import forms
+from .models import Cancion, ListaReproduccion
 
 class AgregarCancionesForm(forms.ModelForm):
+    """
+    Formulario para agregar múltiples canciones a una lista de reproducción.
+
+    Campo personalizado:
+    - canciones: Permite seleccionar varias canciones mediante checkboxes.
+
+    Se basa en el modelo ListaReproduccion y solo expone el campo 'canciones'.
+    """
     canciones = forms.ModelMultipleChoiceField(
         queryset=Cancion.objects.all(),
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
         label='Selecciona las canciones para agregar',
-        required=False,
+        required=False,  # Permite enviar sin seleccionar canciones
     )
 
     class Meta:
