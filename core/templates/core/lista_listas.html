@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+<div class="container d-flex justify-content-center align-items-start mt-5">
+  <div class="card shadow p-4 w-100" style="max-width: 800px;">
+    <h2 class="text-center mb-4">Mis listas de reproducción</h2>
+
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+      <a href="{% url 'crear_lista' %}" class="btn btn-success">Crear nueva lista</a>
+      <a href="{% url 'inicio' %}" class="btn btn-secondary">Regresar al inicio</a>
+    </div>
+
+    {% if listas %}
+      <ul class="list-group">
+        {% for lista in listas %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between flex-column flex-md-row align-items-start align-items-md-center">
+              <div class="mb-2 mb-md-0">
+                <h5 class="mb-1">{{ lista.nombre }}</h5>
+                <small class="text-muted">{{ lista.descripcion|default:"Sin descripción" }}</small>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="{% url 'editar_lista' lista.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_lista' lista.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a href="{% url 'agregar_canciones' lista.pk %}" class="btn btn-primary btn-sm">Agregar canciones</a>
+                <a href="{% url 'detalle_lista' lista.pk %}" class="btn btn-info btn-sm">Ver canciones</a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-center text-muted">No tienes listas creadas aún.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

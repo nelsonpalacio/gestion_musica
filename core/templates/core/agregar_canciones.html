@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block contenido %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card p-4 shadow" style="max-width: 600px; width: 100%;">
+    <h2 class="text-center mb-3">Agregar canciones a "{{ lista.nombre }}"</h2>
+    <p class="text-center text-muted mb-4">Selecciona las canciones que quieres añadir a tu lista de reproducción.</p>
+
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      {% for field in form %}
+        <div class="mb-3">
+          <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+
+        {% if field.name == "canciones" %}
+          <div>
+            {% for checkbox in field %}
+              <div class="form-check py-2 border-bottom">
+                {{ checkbox.tag }}
+                <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                  {{ checkbox.choice_label }}
+                </label>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ field|add_class:"form-control" }}
+        {% endif %}
+
+
+          {% if field.errors %}
+            <div class="text-danger small">{{ field.errors }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="btn btn-success w-100 mb-2">Guardar</button>
+      <a href="{% url 'lista_listas' %}" class="btn btn-secondary w-100">Cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block contenido %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card p-4 shadow" style="max-width: 500px; width: 100%;">
+    <h2 class="text-center mb-3">Crear nueva lista de reproducción</h2>
+    <p class="text-center text-muted mb-4">Agrega el nombre y descripción a tu nueva playlist</p>
+
+    <form method="POST" novalidate>
+      {% csrf_token %}
+
+      {% for field in form %}
+        {% if field.name != "canciones" %}
+          <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field|add_class:"form-control" }}
+            {% if field.errors %}
+              <div class="text-danger small">{{ field.errors }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <button type="submit" class="btn btn-success w-100 mb-2">Crear lista</button>
+      <a href="{% url 'lista_listas' %}" class="btn btn-info w-100 mb-2">Ver mis listas</a>
+      <a href="{% url 'inicio' %}" class="btn btn-secondary w-100">Regresar al inicio</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

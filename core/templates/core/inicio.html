@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+<div class="container text-center mt-5">
+  <h1 class="mb-4">¡Bienvenido/a, {{ user.username }}!</h1>
+  <p class="lead text-muted">Esta es tu aplicación de música. Aquí podrás crear y gestionar tus listas de reproducción.</p>
+
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-5 mb-4">
+      <div class="card shadow rounded-4 h-100 p-4 d-flex flex-column justify-content-between">
+        <div>
+          <h4 class="mb-2">Crear nueva playlist</h4>
+          <p class="text-muted">Puedes crear una lista personalizada con tus canciones favoritas.</p>
+        </div>
+        <a href="{% url 'crear_lista' %}" class="btn btn-success mt-3">Crear playlist</a>
+      </div>
+    </div>
+    <div class="col-md-5 mb-4">
+      <div class="card shadow rounded-4 h-100 p-4 d-flex flex-column justify-content-between">
+        <div>
+          <h4 class="mb-2">Ver tus playlists</h4>
+          <p class="text-muted">Explora, edita o elimina las playlists que ya has creado.</p>
+        </div>
+        <a href="{% url 'lista_listas' %}" class="btn btn-secondary mt-3">Ver playlists</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
