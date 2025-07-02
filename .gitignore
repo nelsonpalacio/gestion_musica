@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# SQLite database
+*.sqlite3
+
+# Environment
+env/
+venv/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+
+# VSCode
+.vscode/
+
+# OS generated files
+.DS_Store
+
+# Secret config
+.env
+
+# __MACOSX (si se usa Mac alguna vez)
+__MACOSX/
