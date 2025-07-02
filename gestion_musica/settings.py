@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-7k6bnqb@!hnzis-ab(2mr8$7f76qim1h8a#^zo=z!qwz1vbc8*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gestion-musica.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
